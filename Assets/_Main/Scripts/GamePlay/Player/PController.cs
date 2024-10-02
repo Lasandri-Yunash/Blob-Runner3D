@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -28,7 +29,30 @@ public class PController : MonoBehaviour
     private Vector2 _direction = Vector2.zero;
     
     public PlayerState currentState { get; private set; } = PlayerState.OnStandRun;
-    
+
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+        CinemachineVirtualCamera virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+        if (virtualCamera != null)
+        {
+            virtualCamera.Follow = transform;
+            virtualCamera.LookAt = transform;
+        }
+        else
+        {
+            Debug.LogError("Cinemachine Virtual Camera not found in the scene.");
+        }
+    }
+
     private void Start()
     {
         _player = GetComponent<Player>();
@@ -36,6 +60,8 @@ public class PController : MonoBehaviour
         _animationController = GetComponent<PAnimationController>();
 
         _renderer = GetComponentInChildren<MeshRenderer>();
+
+        _animationController.StartIdleAnimation();
 
         StartCoroutine(DetermineAnimationStateViaBrokenParts());
     }

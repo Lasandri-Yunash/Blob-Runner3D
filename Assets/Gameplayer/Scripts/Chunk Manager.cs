@@ -103,6 +103,7 @@ public class ChunkManager : MonoBehaviour
     public float GetFinishZ()
     {
         return finishLine.transform.position.z;
+
     }
 
     public int GetLevel()

@@ -81,8 +81,13 @@ public class UIManager : MonoBehaviour
     public void UpdateProgressBar()
     {
         if (!GameManager.Instance.IsGameState())
-        
             return;
+
+        if (PController.instance == null || ChunkManager.Instance == null)
+        {
+            Debug.LogError("PController or ChunkManager is null.");
+            return;
+        }
 
         float progress = PController.instance.transform.position.z / ChunkManager.Instance.GetFinishZ();
         progressBar.value = progress;

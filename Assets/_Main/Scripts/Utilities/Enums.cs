@@ -1,6 +1,7 @@
 
 public enum PlayerState
 {
+    OnIdle,
     OnStandRun,
     OnLeftRun,
     OnRightRun,
