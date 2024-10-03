@@ -14,7 +14,7 @@ public class Playbutton : MonoBehaviour
     // Update is called once per frame
     public void PlayButtonPressed()
     {
-       // GameManager.Instance.SetGameState(GameManager.GameState.Game);
+        GameManager.Instance.SetGameState(GameManager.GameState.Game);
         SceneManager.LoadScene(1);
 
     }

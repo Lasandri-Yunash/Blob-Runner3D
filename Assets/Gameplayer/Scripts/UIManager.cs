@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         progressBar.value = 0;
-        gamePanel.SetActive(true);
+        gamePanel.SetActive(false);
         gameOverPanel.SetActive(false);
         SettingsPanel.SetActive(false);
 

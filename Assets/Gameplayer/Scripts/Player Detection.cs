@@ -35,10 +35,11 @@ public class PlayerDetection : MonoBehaviour
         for (int i = 0; i < detectedColliders.Length; i++)
         {
 
+                Debug.Log("detect");
 
             if (detectedColliders[i].tag == "Finish")
             {
-                //Debug.Log("goooo");
+                Debug.Log("goooo");
 
                 PlayerPrefs.SetInt("level", PlayerPrefs.GetInt("level") + 1);
 
