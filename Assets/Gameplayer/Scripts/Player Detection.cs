@@ -1,4 +1,93 @@
+
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using System;
+using Unity.VisualScripting;
+
+
+public class PlayerDetection : MonoBehaviour
+{
+    [Header("Detection Settings")]
+    [SerializeField] private float detectionRadius = 0.5f;
+
+    [Header("Event")]
+    public static Action onDoorsHit;
+
+
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (GameManager.Instance.IsGameState())
+            DetectColliders();
+    }
+
+    private void DetectColliders()
+    {
+        Collider[] detectedColliders = Physics.OverlapSphere(transform.position, detectionRadius);
+
+        for (int i = 0; i < detectedColliders.Length; i++)
+        {
+
+
+            if (detectedColliders[i].tag == "Finish")
+            {
+                //Debug.Log("goooo");
+
+                PlayerPrefs.SetInt("level", PlayerPrefs.GetInt("level") + 1);
+
+                GameManager.Instance.SetGameState(GameManager.GameState.LevelComplete);
+
+                // SceneManager.LoadScene(0);
+
+
+            }
+
+            else if (detectedColliders[i].tag == "Coin")
+            {
+                Destroy(detectedColliders[i].gameObject);
+
+                DataManager.Instance.AddCoins(1);
+            }
+
+
+        }
+
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -74,3 +163,4 @@ public class PlayerDetection : MonoBehaviour
 
     }
 }
+*/
