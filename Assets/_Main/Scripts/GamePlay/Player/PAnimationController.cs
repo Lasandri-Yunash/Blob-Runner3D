@@ -21,9 +21,14 @@ public class PAnimationController : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
 
         // Start with idle animation at the beginning of the game
-        StartIdleAnimation();
+        //StartIdleAnimation();
     }
 
+    public void ActivateAnimator()
+    {
+        _animator.enabled = true;
+        StartStandAnimation(); // Start with idle animation after activating
+    }
     public void IncreaseRunAnimationRate(float rate = 1)
     {
         DOTween.To(() => _animator.GetFloat(speedRate),
@@ -55,11 +60,11 @@ public class PAnimationController : MonoBehaviour
     }
 
     // New method for Idle animation
-    public void StartIdleAnimation()
+    /*public void StartIdleAnimation()
     {
         ResetAllState();
         _animator.SetBool(shouldIdle, true);
-    }
+    }*/
 
     private void ResetAllState()
     {

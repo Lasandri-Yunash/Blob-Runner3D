@@ -15,9 +15,12 @@ public class PlayerDetection : MonoBehaviour
     [Header("Event")]
     public static Action onDoorsHit;
 
+    private PAnimationController _animationController = null;
+
 
     void Start()
     {
+        _animationController = GetComponent<PAnimationController>();
 
     }
 
@@ -39,11 +42,16 @@ public class PlayerDetection : MonoBehaviour
 
             if (detectedColliders[i].tag == "Finish")
             {
-                Debug.Log("goooo");
+                //Debug.Log("goooo");
 
                 PlayerPrefs.SetInt("level", PlayerPrefs.GetInt("level") + 1);
 
+                _animationController.DisableAnimator();
+                GetComponent<PController>().StopMovement();
+
+
                 GameManager.Instance.SetGameState(GameManager.GameState.LevelComplete);
+
 
                 // SceneManager.LoadScene(0);
 

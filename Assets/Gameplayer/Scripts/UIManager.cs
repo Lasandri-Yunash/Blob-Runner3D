@@ -17,8 +17,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Slider progressBar;
     [SerializeField] private Text levelText;
 
+    private PAnimationController _animationController;
+
     void Start()
     {
+        //_animationController.DisableAnimator();
+        //GetComponent<PController>().StopMovement();
+
+
         progressBar.value = 0;
         gamePanel.SetActive(false);
         gameOverPanel.SetActive(false);
@@ -27,6 +33,13 @@ public class UIManager : MonoBehaviour
         levelText.text = "Level "+ (ChunkManager.Instance.GetLevel() + 1);
 
         GameManager.onGameStateChanged += GameStateChangedCallBack;
+
+        if (PController.instance != null)
+        {
+            _animationController = PController.instance.GetComponent<PAnimationController>();
+        }
+
+
     }
 
     private void OnDestroy()
@@ -57,6 +70,23 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.SetGameState(GameManager.GameState.Game);
         menuPanel.SetActive(false);
         gamePanel.SetActive(true);
+
+        // Activate player animations
+        if (_animationController != null)
+        {
+            _animationController.ActivateAnimator();  // Start animations here
+            //GetComponent<PController>().CanMove();
+
+        }
+        else
+        {
+            Debug.LogError("PAnimationController is not assigned.");
+        }
+
+        if (PController.instance != null)
+        {
+            PController.instance.EnableMovement();
+        }
 
     }
 
