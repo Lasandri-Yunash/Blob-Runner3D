@@ -180,10 +180,11 @@ public class PController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("AFinish"))
+        if (other.CompareTag("aFinish"))
         {
-            JellyGameManager.Instance.RestartGame(0);
+           JellyGameManager.Instance.RestartGame(0);
         }
+
     }
 
     private void OnEnable()

@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         progressBar.value = 0;
-        gamePanel.SetActive(false);
+        gamePanel.SetActive(true);
         gameOverPanel.SetActive(false);
         SettingsPanel.SetActive(false);
 
@@ -62,7 +62,7 @@ public class UIManager : MonoBehaviour
 
     public void RetryButtonPressed()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void ShowGameOver()
