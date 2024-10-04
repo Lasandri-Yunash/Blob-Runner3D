@@ -87,12 +87,12 @@ public class UIManager : MonoBehaviour
         {
             PController.instance.EnableMovement();
         }
-
+       
     }
 
     public void RetryButtonPressed()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 
     public void ShowGameOver()

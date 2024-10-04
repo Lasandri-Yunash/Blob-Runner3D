@@ -58,6 +58,22 @@ public class PlayerDetection : MonoBehaviour
 
             }
 
+            /*if (detectedColliders[i].tag == "Finish")
+            {
+                //Debug.Log("goooo");
+
+                PlayerPrefs.SetInt("level", PlayerPrefs.GetInt("level") + 1);
+
+               
+
+                GameManager.Instance.SetGameState(GameManager.GameState.LevelComplete);
+
+
+                // SceneManager.LoadScene(0);
+
+
+            }*/
+
             else if (detectedColliders[i].tag == "Coin")
             {
                 Destroy(detectedColliders[i].gameObject);
